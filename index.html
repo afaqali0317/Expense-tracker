@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Expense Tracker</title>
+
+<style>
+    body {margin: 10px;border: 10px double rgb(0, 0, 0); min-width: 100%;border-radius: 10px;}
+    #d1 {font-size: 200%;font-weight: 500;text-align: center;font-family: Arial, Helvetica, sans-serif;}
+    #d2 {font-size: 100%;font-weight: 600;text-align: center;font-family: Arial, Helvetica, sans-serif;
+    color: rgb(14, 131, 14);}   
+    
+    #name {width:80%;}
+    #date, #amount {width: 20%;}
+    label {font-weight: bold; font-family: Georgia, 'Times New Roman', Times, serif;}
+
+    #add-b {font-size:120%; text-align: center; color: #ffffff;background: #25691c;border-radius: 5px;
+            margin: auto;}
+    
+    #data-tab {width:100%; text-align: left; border: 2px solid black;padding: 5px;}    
+    thead {color: #ffffff;background-color: #1e2ebd;font-size: 120%;border-color: #1e2ebd;}
+    tbody {background-color: #7d8997;font-size: 100%;border-color: #7d8997 ;}
+    td {padding: 2px;margin: 0px;}
+    
+</style>
+</head>
+ <!--======================================================================== -->
+<body><center>
+
+    <div id="container">
+        <div id=""formdiv>
+ <div id="d1">Expense Tracker</div>
+ <br>
+ <div id="d2">Add a new Item:</div>
+<br>
+
+<label for="name">Name :</label>
+<input id="name" type="text" name="Name" placeholder="Where was the Expense made?" autocomplete="Unknown" required>
+<br>
+<label for="date">Date/Time :</label>
+<input id="date" type="datetime-local" name="Date" placeholder="DD/MM/YYYY" >
+
+<label for="amount">Amount :</label>
+<input id="amount" type="number" name="Amount" placeholder="How Much? " required>
+
+<br>
+</div>
+<div id="add">
+<!-- <input id="add-b" type="submit" onclick="adddata()" value="Add Expense"> -->
+<button id="add-b"  onclick="adddata()">Add Expense</button>
+</div>
+
+<br>
+</div>
+ <br>
+
+
+
+
+
+
+<div id="tabdiv">
+  <center>
+ <div id="database">
+    <table id="data-tab">
+    <thead >
+            <tr> <th>Name</th>
+            <th>Date/Time</th>
+            <th>Amount</th>
+            <th>Remove</th>
+            </tr>
+    </thead>
+    <tbody id="t-body">
+    </tbody>
+    </table>
+ </center>
+
+  </div>
+ <!-- </div>    -->
+  
+  
+
+</center>
+</body>
+
+
+ <!--======================================================================== -->
+
+
+
+<script >
+    function adddata() {
+    var name =document.getElementById("name").value;
+    var date =document.getElementById("date").value;
+    var amount =document.getElementById("amount").value;
+
+    writ(name,date,amount);
+    }
+  
+
+ function writ(name,date,amount){
+
+        let tbodyel=document.getElementById("t-body");
+        
+        let nrow =document.createElement('tr');
+        let td1 =document.createElement('td');
+        let td2 =document.createElement('td');
+        let td3 =document.createElement('td');
+        let td4 =document.createElement('td');
+
+
+        td1.innerHTML=name;
+        td2.innerHTML=date;
+        td3.innerHTML=amount;
+        td4.innerHTML= "<input type='button' onclick='remo(this)' value='X' name='add' > ";
+
+        
+        nrow.appendChild(td1);
+        nrow.appendChild(td2);
+        nrow.appendChild(td3);
+        nrow.appendChild(td4);
+    
+
+        tbodyel.appendChild(nrow);
+    }
+
+function remo(thisrow){
+            let s = thisrow.parentNode.parentNode;
+            s.parentNode.removeChild(s);
+}
+
+</script>
+
+</body>
+</html>
